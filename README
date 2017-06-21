@@ -1,3 +1,19 @@
+Changelog:
+------------
+
+2017.06.21 修正db/tsar.sql中swap、tcp、traffic和partition数据库表创建字段错误。
+
+其它
+------------
+
+如有问题，请联系 shanshuieast@gmail.com 。
+
+------------
+
+以下为tsar2db原始README信息：
+
+------------
+
 tsar2db用来收集一个cdn节点内tsar的采集数据，存到mysql数据库，提供给其它应用查询
 数据保留最近3个月的，各表字段含义和tsar采集定义相同
 从mysql的tsar库中可以看到整个cdn节点tsar采集到的数据

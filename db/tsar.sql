@@ -94,6 +94,9 @@ CREATE TABLE IF NOT EXISTS `tcp_1` (
 		`pasive`	decimal(15,2),
 		`iseg`	decimal(15,2),
 		`outseg`	decimal(15,2),
+		`EstReset` decimal(15,2) DEFAULT NULL, 
+		`AtmpFail` decimal(15,2) DEFAULT NULL, 
+		`CurrEstab` decimal(15,2) DEFAULT NULL,
 		`retran`        decimal(15,2),
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
@@ -107,6 +110,9 @@ CREATE TABLE IF NOT EXISTS `tcp_2` (
 		`pasive`        decimal(15,2),
 		`iseg`  decimal(15,2),
 		`outseg`        decimal(15,2),
+		`EstReset` decimal(15,2) DEFAULT NULL, 
+		`AtmpFail` decimal(15,2) DEFAULT NULL, 
+		`CurrEstab` decimal(15,2) DEFAULT NULL,
 		`retran`        decimal(15,2),
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
@@ -119,6 +125,9 @@ CREATE TABLE IF NOT EXISTS `tcp` (
 		`pasive`        decimal(15,2),
 		`iseg`  decimal(15,2),
 		`outseg`        decimal(15,2),
+		`EstReset` decimal(15,2) DEFAULT NULL, 
+		`AtmpFail` decimal(15,2) DEFAULT NULL, 
+		`CurrEstab` decimal(15,2) DEFAULT NULL,
 		`retran`        decimal(15,2),
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
@@ -211,6 +220,9 @@ CREATE TABLE IF NOT EXISTS `partition_1` (
 		`bused`	decimal(15,2),
 		`btotl`	decimal(15,2),
 		`util`	decimal(15,2),
+		`ifree` decimal(15,2) DEFAULT NULL, 
+		`itotl` decimal(15,2) DEFAULT NULL, 
+		`iutil` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MyISAM COMMENT='partition mod info';
@@ -223,6 +235,9 @@ CREATE TABLE IF NOT EXISTS `partition_2` (
 		`bused` decimal(15,2),
 		`btotl` decimal(15,2),
 		`util`  decimal(15,2),
+		`ifree` decimal(15,2) DEFAULT NULL, 
+		`itotl` decimal(15,2) DEFAULT NULL, 
+		`iutil` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MyISAM COMMENT='partition mod info';
@@ -234,6 +249,9 @@ CREATE TABLE IF NOT EXISTS `partition` (
 		`bused` decimal(15,2),
 		`btotl` decimal(15,2),
 		`util`  decimal(15,2),
+		`ifree` decimal(15,2) DEFAULT NULL, 
+		`itotl` decimal(15,2) DEFAULT NULL, 
+		`iutil` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MERGE UNION=(partition_1,partition_2) INSERT_METHOD=LAST;
@@ -244,6 +262,8 @@ CREATE TABLE IF NOT EXISTS `swap_1` (
 		`time`	int(11) NOT NULL default '0',
 		`swpin`	decimal(15,2),
 		`swpout`	decimal(15,2),
+		`total` decimal(15,2) DEFAULT NULL, 
+		`util` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MyISAM COMMENT='swap mod info';
@@ -254,6 +274,8 @@ CREATE TABLE IF NOT EXISTS `swap_2` (
 		`time`  int(11) NOT NULL default '0',
 		`swpin` decimal(15,2),
 		`swpout`        decimal(15,2),
+		`total` decimal(15,2) DEFAULT NULL, 
+		`util` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MyISAM COMMENT='swap mod info';
@@ -263,6 +285,8 @@ CREATE TABLE IF NOT EXISTS `swap` (
 		`time`  int(11) NOT NULL default '0',
 		`swpin` decimal(15,2),
 		`swpout`        decimal(15,2),
+		`total` decimal(15,2) DEFAULT NULL, 
+		`util` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MERGE UNION=(swap_1,swap_2) INSERT_METHOD=LAST;
@@ -305,6 +329,8 @@ CREATE TABLE IF NOT EXISTS `traffic_1` (
 		`bytout`       decimal(15,2),
 		`pktin`         decimal(15,2),
 		`pktout`        decimal(15,2),
+		`pkterr` decimal(15,2) DEFAULT NULL,
+		`pktdrp` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MyISAM COMMENT='traffic info';
@@ -318,6 +344,8 @@ CREATE TABLE IF NOT EXISTS `traffic_2` (
 		`bytout`       decimal(15,2),
 		`pktin`         decimal(15,2),
 		`pktout`        decimal(15,2),
+		`pkterr` decimal(15,2) DEFAULT NULL,
+		`pktdrp` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MyISAM COMMENT='traffic info';
@@ -330,6 +358,8 @@ CREATE TABLE IF NOT EXISTS `traffic` (
 		`bytout`       decimal(15,2),
 		`pktin`         decimal(15,2),
 		`pktout`        decimal(15,2),
+		`pkterr` decimal(15,2) DEFAULT NULL,
+		`pktdrp` decimal(15,2) DEFAULT NULL,
 		`view_time` timestamp default current_timestamp,
 		PRIMARY KEY(`view_time`,`host_name`)
 		) ENGINE=MERGE UNION=(traffic_1,traffic_2) INSERT_METHOD=LAST;
